@@ -13,7 +13,7 @@ end
 def cached_fetch(url)
   content = settings.cache.get(url)
 
-  unless content t
+  unless content
     content = fetch_metadata_and_render(url)
     settings.cache.set(url, content, 3600)
   end
