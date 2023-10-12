@@ -16,6 +16,8 @@ GEM
       uri
     racc (1.7.1)
     rack (2.2.8)
+    rack-cache (1.14.0)
+      rack (>= 0.4)
     rack-protection (3.1.0)
       rack (~> 2.2, >= 2.2.4)
     ruby2_keywords (0.0.5)
@@ -41,6 +43,7 @@ PLATFORMS
 DEPENDENCIES
   nokogiri (~> 1.15)
   open-uri (~> 0.3.0)
+  rack-cache (~> 1.14)
   sinatra (~> 3.1)
   thin (~> 1.8)
 
