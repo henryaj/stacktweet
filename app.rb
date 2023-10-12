@@ -11,11 +11,11 @@ get "/:publication_name/:article_slug" do
 end
 
 def cached_fetch(url)
-  content = cache.get(url)
+  content = settings.cache.get(url)
 
-  unless content
+  unless content t
     content = fetch_metadata_and_render(url)
-    cache.set(url, content, 3600)
+    settings.cache.set(url, content, 3600)
   end
 
   content
