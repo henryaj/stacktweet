@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% meta_data.each do |key, value| %>
+    <meta name="<%= key %>" content="<%= value %>">
+  <% end %>
+</head>
+<body>
+  <p>Redirecting to the article...</p>
+  <script>
+    setTimeout(() => {
+      window.location.href = "<%= url %>";
+    }, 1500); // 5 seconds delay before redirecting
+  </script>
+</body>
+</html>
