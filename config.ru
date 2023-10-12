@@ -1,20 +1,16 @@
-require "dalli"
-require "rack/cache"
-
 require "./app"
 
-if ENV["MEMCACHEDCLOUD_SERVERS"]
-  memcached_username = ENV.fetch("MEMCACHEDCLOUD_USERNAME")
-  memcached_password = ENV.fetch("MEMCACHEDCLOUD_PASSWORD")
-  memcached_servers = ENV.fetch("MEMCACHEDCLOUD_SERVERS")
+if (memcached_servers = ENV["MEMCACHEDCLOUD_SERVERS"])
+  require "dalli"
 
-  metastore_url = "memcached://#{memcached_username}:#{memcached_password}@#{memcached_servers}/meta"
-  entitystore_url = "memcached://#{memcached_username}:#{memcached_password}@#{memcached_servers}/body"
+  configure do
+    options = {
+      username: ENV["MEMCACHEDCLOUD_USERNAME"],
+      password: ENV["MEMCACHEDCLOUD_PASSWORD"]
+    }
 
-  use Rack::Cache,
-    verbose: true,
-    metastore: metastore_url,
-    entitystore: entitystore_url
+    set :cache, Dalli::Client.new(memcached_servers, options)
+  end
 end
 
 run Sinatra::Application

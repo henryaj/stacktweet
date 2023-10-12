@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     daemons (1.4.1)
+    dalli (3.2.6)
     date (3.3.3)
     eventmachine (1.2.7)
     mustermann (3.0.0)
@@ -41,6 +42,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  dalli (~> 3.2)
   nokogiri (~> 1.15)
   open-uri (~> 0.3.0)
   rack-cache (~> 1.14)

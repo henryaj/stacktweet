@@ -7,7 +7,18 @@ get "/:publication_name/:article_slug" do
   publication_name = params[:publication_name]
   article_slug = params[:article_slug]
   url = "https://#{publication_name}.substack.com/p/#{article_slug}"
-  fetch_metadata_and_render(url)
+  cached_fetch(url)
+end
+
+def cached_fetch(url)
+  content = settings.cache.get(url)
+
+  unless content
+    content = fetch_metadata_and_render(url)
+    settings.cache.set(url, content, 3600)
+  end
+
+  content
 end
 
 def fetch_metadata_and_render(url)
@@ -16,7 +27,6 @@ def fetch_metadata_and_render(url)
   page = Nokogiri::HTML(response.body) if response.is_a?(Net::HTTPSuccess)
   meta_tags = page.css("meta")
 
-  # List of Twitter card meta tag properties/names
   twitter_card_properties = [
     "twitter:card",
     "twitter:site",
@@ -27,7 +37,6 @@ def fetch_metadata_and_render(url)
     "twitter:image:alt"
   ]
 
-  # Extract meta data
   meta_data = meta_tags.each_with_object({}) do |meta, hash|
     property = meta.attr("property") || meta.attr("name")
     content = meta.attr("content")
