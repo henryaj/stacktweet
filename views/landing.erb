@@ -31,9 +31,9 @@
     </p>
     <h2>How to use Stacktweet:</h2>
     <ol>
-      <li>Navigate to the Stacktweet link pattern: <code>https://stacktweet.com/:publication_name/:article_slug</code></li>
+      <li>Navigate to the Stacktweet link pattern: <code>https://stacktweet.xyz/:publication_name/:article_slug</code></li>
       <li>Replace <code>:publication_name</code> with the name of the Substack publication, and <code>:article_slug</code> with the specific article's slug.</li>
-      <li>Example: <a href="https://stacktweet.com/tamaradler/the-curious-case-of-bean-trying">https://stacktweet.com/tamaradler/the-curious-case-of-bean-trying</a></li>
+      <li>Example: <a href="https://stacktweet.xyz/tamaradler/the-curious-case-of-bean-trying">https://stacktweet.xyz/tamaradler/the-curious-case-of-bean-trying</a></li>
       <li>Share the resulting Stacktweet link on Twitter.</li>
     </ol>
     <div id="substack-url">
@@ -51,7 +51,7 @@
         if (match) {
           const publicationName = match[1];
           const articleSlug = match[2];
-          document.getElementById('output').innerText = `https://stacktweet.com/${publicationName}/${articleSlug}`;
+          document.getElementById('output').innerText = `https://stacktweet.xyz/${publicationName}/${articleSlug}`;
         } else {
           document.getElementById('output').innerText = 'Invalid Substack URL';
         }
