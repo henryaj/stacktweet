@@ -3,6 +3,10 @@ require "nokogiri"
 require "open-uri"
 require "sinatra"
 
+get "/" do
+  erb :landing
+end
+
 get "/:publication_name/:article_slug" do
   publication_name = params[:publication_name]
   article_slug = params[:article_slug]

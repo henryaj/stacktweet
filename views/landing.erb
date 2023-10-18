@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacktweet</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        margin: 40px;
+        line-height: 1.6;
+      }
+      h1, h2 {
+        color: #333;
+      }
+      p {
+        color: #555;
+      }
+      #substack-url, #stacktweet-url {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to Stacktweet</h1>
+    <p>
+      Struggling to share your Substack articles on Twitter without being penalized? Stacktweet is your solution.
+    </p>
+    <p>
+      With Stacktweet, you can freely link your Substack articles on Twitter without worrying about algorithmic demotions. Start sharing your favorite Substack pieces more effectively!
+    </p>
+    <h2>How to use Stacktweet:</h2>
+    <ol>
+      <li>Navigate to the Stacktweet link pattern: <code>https://stacktweet.com/:publication_name/:article_slug</code></li>
+      <li>Replace <code>:publication_name</code> with the name of the Substack publication, and <code>:article_slug</code> with the specific article's slug.</li>
+      <li>Example: <a href="https://stacktweet.com/tamaradler/the-curious-case-of-bean-trying">https://stacktweet.com/tamaradler/the-curious-case-of-bean-trying</a></li>
+      <li>Share the resulting Stacktweet link on Twitter.</li>
+    </ol>
+    <div id="substack-url">
+      <label for="substackInput">Paste your Substack URL here: </label>
+      <input type="text" id="substackInput">
+    </div>
+    <div id="stacktweet-url">
+      <p>Your Stacktweet URL: <span id="output"></span></p>
+    </div>
+
+    <script>
+      document.getElementById('substackInput').addEventListener('input', function() {
+        const substackUrl = this.value;
+        const match = substackUrl.match(/^https:\/\/(.+?)\.substack\.com\/p\/(.+)$/);
+        if (match) {
+          const publicationName = match[1];
+          const articleSlug = match[2];
+          document.getElementById('output').innerText = `https://stacktweet.com/${publicationName}/${articleSlug}`;
+        } else {
+          document.getElementById('output').innerText = 'Invalid Substack URL';
+        }
+      });
+    </script>
+  </body>
+</html>
+
+
