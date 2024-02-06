@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem "sinatra", "~> 3.1"
 gem "thin", "~> 1.8"
 
-gem "nokogiri", "~> 1.15"
+gem "nokogiri", "~> 1.16"
 gem "open-uri", "~> 0.3.0"
 
 gem "rack-cache", "~> 1.14"
